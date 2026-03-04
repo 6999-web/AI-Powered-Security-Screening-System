@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API 测试页面</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f7fa;
+        }
+        h1 {
+            color: #303133;
+            text-align: center;
+        }
+        .test-section {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+        }
+        .test-button {
+            background: #409eff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+        .test-button:hover {
+            background: #66b1ff;
+        }
+        .result {
+            margin-top: 15px;
+            padding: 15px;
+            background: #f5f7fa;
+            border-radius: 4px;
+            border-left: 4px solid #409eff;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+        }
+        .success {
+            border-left-color: #67c23a;
+            background: #f0f9ff;
+        }
+        .error {
+            border-left-color: #f56c6c;
+            background: #fef0f0;
+        }
+        .status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .status.ok {
+            background: #67c23a;
+            color: white;
+        }
+        .status.fail {
+            background: #f56c6c;
+            color: white;
+        }
+        .info {
+            color: #909399;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 智能安检系统 API 测试</h1>
+    
+    <div class="test-section">
+        <h2>📡 服务器连接测试</h2>
+        <button class="test-button" onclick="testRoot()">测试根路径</button>
+        <button class="test-button" onclick="testAllAPIs()">测试所有 API</button>
+        <div id="root-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>📊 统计数据接口</h2>
+        <button class="test-button" onclick="testStatistics()">GET /api/statistics</button>
+        <div id="statistics-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>📝 最近记录接口</h2>
+        <button class="test-button" onclick="testRecentRecords()">GET /api/recent-records</button>
+        <div id="records-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>⚠️ 异常记录接口</h2>
+        <button class="test-button" onclick="testRecentAnomalies()">GET /api/recent-anomalies</button>
+        <div id="anomalies-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>🚪 通道信息接口</h2>
+        <button class="test-button" onclick="testChannels()">GET /api/channels</button>
+        <div id="channels-result"></div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8888';
+
+        async function testAPI(url, resultId, description) {
+            const resultDiv = document.getElementById(resultId);
+            resultDiv.innerHTML = '<div class="info">⏳ 正在测试...</div>';
+            
+            try {
+                const startTime = Date.now();
+                const response = await fetch(url);
+                const endTime = Date.now();
+                const data = await response.json();
+                
+                const statusClass = response.ok ? 'ok' : 'fail';
+                const resultClass = response.ok ? 'success' : 'error';
+                
+                resultDiv.innerHTML = `
+                    <div class="status ${statusClass}">${response.status} ${response.statusText}</div>
+                    <div class="result ${resultClass}">
+                        <strong>${description}</strong>
+                        
+                        响应时间: ${endTime - startTime}ms
+                        
+                        响应数据:
+                        ${JSON.stringify(data, null, 2)}
+                    </div>
+                `;
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="status fail">连接失败</div>
+                    <div class="result error">
+                        <strong>❌ 错误</strong>
+                        
+                        ${error.message}
+                        
+                        可能原因：
+                        1. 后端服务未启动
+                        2. 端口被占用
+                        3. 网络连接问题
+                        
+                        解决方案：
+                        1. 检查后端是否运行: netstat -ano | findstr :8888
+                        2. 启动后端: cd backend && python main.py
+                    </div>
+                `;
+            }
+        }
+
+        function testRoot() {
+            testAPI(`${API_BASE}/`, 'root-result', '根路径测试');
+        }
+
+        function testStatistics() {
+            testAPI(`${API_BASE}/api/statistics`, 'statistics-result', '统计数据接口');
+        }
+
+        function testRecentRecords() {
+            testAPI(`${API_BASE}/api/recent-records?limit=5`, 'records-result', '最近记录接口');
+        }
+
+        function testRecentAnomalies() {
+            testAPI(`${API_BASE}/api/recent-anomalies?limit=5`, 'anomalies-result', '异常记录接口');
+        }
+
+        function testChannels() {
+            testAPI(`${API_BASE}/api/channels`, 'channels-result', '通道信息接口');
+        }
+
+        async function testAllAPIs() {
+            testRoot();
+            await new Promise(resolve => setTimeout(resolve, 500));
+            testStatistics();
+            await new Promise(resolve => setTimeout(resolve, 500));
+            testRecentRecords();
+            await new Promise(resolve => setTimeout(resolve, 500));
+            testRecentAnomalies();
+            await new Promise(resolve => setTimeout(resolve, 500));
+            testChannels();
+        }
+
+        // 页面加载时自动测试根路径
+        window.onload = () => {
+            testRoot();
+        };
+    </script>
+</body>
+</html>

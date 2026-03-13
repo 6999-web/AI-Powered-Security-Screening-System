@@ -1,0 +1,877 @@
+﻿{
+    "earbuds":  {
+                    "weight":  0.05,
+                    "category":  "电子产品",
+                    "name":  "真无线耳塞"
+                },
+    "action_camera":  {
+                          "weight":  0.2,
+                          "category":  "电子产品",
+                          "name":  "运动相机"
+                      },
+    "wall_clock":  {
+                       "weight":  0.5,
+                       "category":  "电子产品",
+                       "name":  "挂钟"
+                   },
+    "network_card":  {
+                         "weight":  0.1,
+                         "category":  "电子产品",
+                         "name":  "网卡"
+                     },
+    "smartwatch":  {
+                       "weight":  0.1,
+                       "category":  "电子产品",
+                       "name":  "智能手表"
+                   },
+    "esim":  {
+                 "weight":  0,
+                 "category":  "电子产品",
+                 "name":  "eSIM"
+             },
+    "xbox":  {
+                 "weight":  0.5,
+                 "category":  "电子产品",
+                 "name":  "Xbox"
+             },
+    "battery":  {
+                    "weight":  0.05,
+                    "category":  "电子产品",
+                    "name":  "电池"
+                },
+    "printer":  {
+                    "weight":  3,
+                    "category":  "电子产品",
+                    "name":  "打印机"
+                },
+    "alarm_clock":  {
+                        "weight":  0.3,
+                        "category":  "电子产品",
+                        "name":  "闹钟"
+                    },
+    "juicer":  {
+                   "weight":  2,
+                   "category":  "电子产品",
+                   "name":  "榨汁机"
+               },
+    "sim_card":  {
+                     "weight":  0.01,
+                     "category":  "电子产品",
+                     "name":  "SIM卡"
+                 },
+    "desktop_computer":  {
+                             "weight":  5,
+                             "category":  "电子产品",
+                             "name":  "台式电脑"
+                         },
+    "extension_cord":  {
+                           "weight":  0.2,
+                           "category":  "电子产品",
+                           "name":  "延长线"
+                       },
+    "modem":  {
+                  "weight":  0.3,
+                  "category":  "电子产品",
+                  "name":  "调制解调器"
+              },
+    "fitness_tracker":  {
+                            "weight":  0.05,
+                            "category":  "电子产品",
+                            "name":  "健身追踪器"
+                        },
+    "microphone":  {
+                       "weight":  0.3,
+                       "category":  "电子产品",
+                       "name":  "麦克风"
+                   },
+    "hair_straightener":  {
+                              "weight":  0.3,
+                              "category":  "电子产品",
+                              "name":  "直发器"
+                          },
+    "led_light":  {
+                      "weight":  0.2,
+                      "category":  "电子产品",
+                      "name":  "LED灯"
+                  },
+    "relay":  {
+                  "weight":  0.1,
+                  "category":  "电子产品",
+                  "name":  "继电器"
+              },
+    "washing_machine":  {
+                            "weight":  50,
+                            "category":  "电子产品",
+                            "name":  "洗衣机"
+                        },
+    "rom":  {
+                "weight":  0.05,
+                "category":  "电子产品",
+                "name":  "只读存储器"
+            },
+    "phone":  {
+                  "weight":  0.2,
+                  "category":  "电子产品",
+                  "name":  "手机"
+              },
+    "blu_ray_player":  {
+                           "weight":  1,
+                           "category":  "电子产品",
+                           "name":  "蓝光播放器"
+                       },
+    "bluetooth_card":  {
+                           "weight":  0.05,
+                           "category":  "电子产品",
+                           "name":  "蓝牙卡"
+                       },
+    "smart_light":  {
+                        "weight":  0.2,
+                        "category":  "电子产品",
+                        "name":  "智能灯"
+                    },
+    "hair_curler":  {
+                        "weight":  0.3,
+                        "category":  "电子产品",
+                        "name":  "卷发器"
+                    },
+    "oven":  {
+                 "weight":  20,
+                 "category":  "电子产品",
+                 "name":  "烤箱"
+             },
+    "ram":  {
+                "weight":  0.05,
+                "category":  "电子产品",
+                "name":  "内存条"
+            },
+    "airpods":  {
+                    "weight":  0.05,
+                    "category":  "电子产品",
+                    "name":  "AirPods"
+                },
+    "usb_hub":  {
+                    "weight":  0.2,
+                    "category":  "电子产品",
+                    "name":  "USB集线器"
+                },
+    "video_game_console":  {
+                               "weight":  0.5,
+                               "category":  "电子产品",
+                               "name":  "游戏主机"
+                           },
+    "playstation":  {
+                        "weight":  0.5,
+                        "category":  "电子产品",
+                        "name":  "PlayStation"
+                    },
+    "scanner":  {
+                    "weight":  2,
+                    "category":  "电子产品",
+                    "name":  "扫描仪"
+                },
+    "smart_plug":  {
+                       "weight":  0.1,
+                       "category":  "电子产品",
+                       "name":  "智能插座"
+                   },
+    "usb_drive":  {
+                      "weight":  0.02,
+                      "category":  "电子产品",
+                      "name":  "U盘"
+                  },
+    "diode":  {
+                  "weight":  0.01,
+                  "category":  "电子产品",
+                  "name":  "二极管"
+              },
+    "wind_turbine":  {
+                         "weight":  100,
+                         "category":  "电子产品",
+                         "name":  "风力涡轮机"
+                     },
+    "dslr":  {
+                 "weight":  0.8,
+                 "category":  "电子产品",
+                 "name":  "单反相机"
+             },
+    "nano_sim":  {
+                     "weight":  0.01,
+                     "category":  "电子产品",
+                     "name":  "Nano SIM"
+                 },
+    "aa_battery":  {
+                       "weight":  0.02,
+                       "category":  "电子产品",
+                       "name":  "AA电池"
+                   },
+    "gopro":  {
+                  "weight":  0.2,
+                  "category":  "电子产品",
+                  "name":  "GoPro"
+              },
+    "android_tablet":  {
+                           "weight":  0.5,
+                           "category":  "电子产品",
+                           "name":  "安卓平板"
+                       },
+    "bluetooth_speaker":  {
+                              "weight":  0.5,
+                              "category":  "电子产品",
+                              "name":  "蓝牙音箱"
+                          },
+    "charger":  {
+                    "weight":  0.2,
+                    "category":  "电子产品",
+                    "name":  "充电器"
+                },
+    "chromecast":  {
+                       "weight":  0.1,
+                       "category":  "电子产品",
+                       "name":  "Chromecast"
+                   },
+    "mirrorless_camera":  {
+                              "weight":  0.6,
+                              "category":  "电子产品",
+                              "name":  "无反相机"
+                          },
+    "microwave":  {
+                      "weight":  15,
+                      "category":  "电子产品",
+                      "name":  "微波炉"
+                  },
+    "sound_card":  {
+                       "weight":  0.1,
+                       "category":  "电子产品",
+                       "name":  "声卡"
+                   },
+    "robot_vacuum":  {
+                         "weight":  2,
+                         "category":  "电子产品",
+                         "name":  "扫地机器人"
+                     },
+    "thermometer":  {
+                        "weight":  0.1,
+                        "category":  "电子产品",
+                        "name":  "温度计"
+                    },
+    "tv":  {
+               "weight":  10,
+               "category":  "电子产品",
+               "name":  "电视"
+           },
+    "speaker":  {
+                    "weight":  0.5,
+                    "category":  "电子产品",
+                    "name":  "扬声器"
+                },
+    "external_hard_drive":  {
+                                "weight":  0.5,
+                                "category":  "电子产品",
+                                "name":  "移动硬盘"
+                            },
+    "adapter":  {
+                    "weight":  0.1,
+                    "category":  "电子产品",
+                    "name":  "转接器"
+                },
+    "wireless_headphones":  {
+                                "weight":  0.1,
+                                "category":  "电子产品",
+                                "name":  "无线耳机"
+                            },
+    "ultrabook":  {
+                      "weight":  1.2,
+                      "category":  "电子产品",
+                      "name":  "超极本"
+                  },
+    "electric_kettle":  {
+                            "weight":  1,
+                            "category":  "电子产品",
+                            "name":  "电热水壶"
+                        },
+    "monitor":  {
+                    "weight":  3,
+                    "category":  "电子产品",
+                    "name":  "显示器"
+                },
+    "fuse":  {
+                 "weight":  0.01,
+                 "category":  "电子产品",
+                 "name":  "保险丝"
+             },
+    "resistor":  {
+                     "weight":  0.01,
+                     "category":  "电子产品",
+                     "name":  "电阻"
+                 },
+    "laser_cutter":  {
+                         "weight":  20,
+                         "category":  "电子产品",
+                         "name":  "激光切割机"
+                     },
+    "roku":  {
+                 "weight":  0.2,
+                 "category":  "电子产品",
+                 "name":  "Roku"
+             },
+    "blender":  {
+                    "weight":  2,
+                    "category":  "电子产品",
+                    "name":  "料理机"
+                },
+    "handheld_console":  {
+                             "weight":  0.2,
+                             "category":  "电子产品",
+                             "name":  "掌上游戏机"
+                         },
+    "fire_stick":  {
+                       "weight":  0.1,
+                       "category":  "电子产品",
+                       "name":  "Fire Stick"
+                   },
+    "wireless_mouse":  {
+                           "weight":  0.1,
+                           "category":  "电子产品",
+                           "name":  "无线鼠标"
+                       },
+    "electric_toothbrush":  {
+                                "weight":  0.1,
+                                "category":  "电子产品",
+                                "name":  "电动牙刷"
+                            },
+    "button_battery":  {
+                           "weight":  0.01,
+                           "category":  "电子产品",
+                           "name":  "纽扣电池"
+                       },
+    "inductor":  {
+                     "weight":  0.05,
+                     "category":  "电子产品",
+                     "name":  "电感"
+                 },
+    "sd_card":  {
+                    "weight":  0.01,
+                    "category":  "电子产品",
+                    "name":  "SD卡"
+                },
+    "nintendo_switch":  {
+                            "weight":  0.4,
+                            "category":  "电子产品",
+                            "name":  "Nintendo Switch"
+                        },
+    "keyboard":  {
+                     "weight":  0.5,
+                     "category":  "电子产品",
+                     "name":  "键盘"
+                 },
+    "kindle":  {
+                   "weight":  0.3,
+                   "category":  "电子产品",
+                   "name":  "Kindle"
+               },
+    "rechargeable_battery":  {
+                                 "weight":  0.05,
+                                 "category":  "电子产品",
+                                 "name":  "充电电池"
+                             },
+    "streaming_device":  {
+                             "weight":  0.2,
+                             "category":  "电子产品",
+                             "name":  "流媒体设备"
+                         },
+    "smart_band":  {
+                       "weight":  0.05,
+                       "category":  "电子产品",
+                       "name":  "智能手环"
+                   },
+    "smart_lock":  {
+                       "weight":  0.5,
+                       "category":  "电子产品",
+                       "name":  "智能锁"
+                   },
+    "cable":  {
+                  "weight":  0.05,
+                  "category":  "电子产品",
+                  "name":  "数据线"
+              },
+    "e_reader":  {
+                     "weight":  0.3,
+                     "category":  "电子产品",
+                     "name":  "电子书阅读器"
+                 },
+    "9v_battery":  {
+                       "weight":  0.05,
+                       "category":  "电子产品",
+                       "name":  "9V电池"
+                   },
+    "modem_card":  {
+                       "weight":  0.1,
+                       "category":  "电子产品",
+                       "name":  "调制解调卡"
+                   },
+    "gaming_console":  {
+                           "weight":  0.5,
+                           "category":  "电子产品",
+                           "name":  "游戏机"
+                       },
+    "graphics_card":  {
+                          "weight":  0.3,
+                          "category":  "电子产品",
+                          "name":  "显卡"
+                      },
+    "turntable":  {
+                      "weight":  2,
+                      "category":  "电子产品",
+                      "name":  "唱片机"
+                  },
+    "ic_chip":  {
+                    "weight":  0.01,
+                    "category":  "电子产品",
+                    "name":  "集成电路"
+                },
+    "toaster":  {
+                    "weight":  2,
+                    "category":  "电子产品",
+                    "name":  "烤面包机"
+                },
+    "pulse_oximeter":  {
+                           "weight":  0.1,
+                           "category":  "电子产品",
+                           "name":  "血氧仪"
+                       },
+    "type_c_cable":  {
+                         "weight":  0.05,
+                         "category":  "电子产品",
+                         "name":  "Type-C数据线"
+                     },
+    "tablet":  {
+                   "weight":  0.5,
+                   "category":  "电子产品",
+                   "name":  "平板电脑"
+               },
+    "apple_tv":  {
+                     "weight":  0.2,
+                     "category":  "电子产品",
+                     "name":  "Apple TV"
+                 },
+    "dryer":  {
+                  "weight":  40,
+                  "category":  "电子产品",
+                  "name":  "烘干机"
+              },
+    "transistor":  {
+                       "weight":  0.01,
+                       "category":  "电子产品",
+                       "name":  "晶体管"
+                   },
+    "mouse":  {
+                  "weight":  0.1,
+                  "category":  "电子产品",
+                  "name":  "鼠标"
+              },
+    "heater":  {
+                   "weight":  2,
+                   "category":  "电子产品",
+                   "name":  "加热器"
+               },
+    "memory_card":  {
+                        "weight":  0.01,
+                        "category":  "电子产品",
+                        "name":  "内存卡"
+                    },
+    "power_strip":  {
+                        "weight":  0.3,
+                        "category":  "电子产品",
+                        "name":  "电源插座"
+                    },
+    "digital_clock":  {
+                          "weight":  0.2,
+                          "category":  "电子产品",
+                          "name":  "数字钟"
+                      },
+    "dvd_player":  {
+                       "weight":  1,
+                       "category":  "电子产品",
+                       "name":  "DVD播放器"
+                   },
+    "laptop":  {
+                   "weight":  1.5,
+                   "category":  "电子产品",
+                   "name":  "笔记本电脑"
+               },
+    "headphones":  {
+                       "weight":  0.1,
+                       "category":  "电子产品",
+                       "name":  "耳机"
+                   },
+    "macbook":  {
+                    "weight":  1.5,
+                    "category":  "电子产品",
+                    "name":  "MacBook"
+                },
+    "hair_dryer":  {
+                       "weight":  0.5,
+                       "category":  "电子产品",
+                       "name":  "吹风机"
+                   },
+    "vr_headset":  {
+                       "weight":  0.5,
+                       "category":  "电子产品",
+                       "name":  "VR头显"
+                   },
+    "game_controller":  {
+                            "weight":  0.2,
+                            "category":  "电子产品",
+                            "name":  "游戏手柄"
+                        },
+    "multimeter":  {
+                       "weight":  0.3,
+                       "category":  "电子产品",
+                       "name":  "万用表"
+                   },
+    "vacuum_cleaner":  {
+                           "weight":  3,
+                           "category":  "电子产品",
+                           "name":  "吸尘器"
+                       },
+    "generator":  {
+                      "weight":  50,
+                      "category":  "电子产品",
+                      "name":  "发电机"
+                  },
+    "solar_panel":  {
+                        "weight":  2,
+                        "category":  "电子产品",
+                        "name":  "太阳能板"
+                    },
+    "ups":  {
+                "weight":  10,
+                "category":  "电子产品",
+                "name":  "不间断电源"
+            },
+    "smart_home_hub":  {
+                           "weight":  0.3,
+                           "category":  "电子产品",
+                           "name":  "智能家居中枢"
+                       },
+    "expansion_card":  {
+                           "weight":  0.1,
+                           "category":  "电子产品",
+                           "name":  "扩展卡"
+                       },
+    "blood_pressure_monitor":  {
+                                   "weight":  0.3,
+                                   "category":  "电子产品",
+                                   "name":  "血压计"
+                               },
+    "soundbar":  {
+                     "weight":  1,
+                     "category":  "电子产品",
+                     "name":  "音条"
+                 },
+    "subwoofer":  {
+                      "weight":  5,
+                      "category":  "电子产品",
+                      "name":  "低音炮"
+                  },
+    "remote_control":  {
+                           "weight":  0.1,
+                           "category":  "电子产品",
+                           "name":  "遥控器"
+                       },
+    "fan":  {
+                "weight":  1,
+                "category":  "电子产品",
+                "name":  "风扇"
+            },
+    "gpu":  {
+                "weight":  0.1,
+                "category":  "电子产品",
+                "name":  "图形处理器"
+            },
+    "ipad":  {
+                 "weight":  0.5,
+                 "category":  "电子产品",
+                 "name":  "iPad"
+             },
+    "floor_lamp":  {
+                       "weight":  2,
+                       "category":  "电子产品",
+                       "name":  "落地灯"
+                   },
+    "capacitor":  {
+                      "weight":  0.05,
+                      "category":  "电子产品",
+                      "name":  "电容器"
+                  },
+    "microprocessor":  {
+                           "weight":  0.01,
+                           "category":  "电子产品",
+                           "name":  "微处理器"
+                       },
+    "transformer":  {
+                        "weight":  5,
+                        "category":  "电子产品",
+                        "name":  "变压器"
+                    },
+    "camera":  {
+                   "weight":  0.5,
+                   "category":  "电子产品",
+                   "name":  "相机"
+               },
+    "webcam":  {
+                   "weight":  0.2,
+                   "category":  "电子产品",
+                   "name":  "网络摄像头"
+               },
+    "wireless_charger":  {
+                             "weight":  0.3,
+                             "category":  "电子产品",
+                             "name":  "无线充电器"
+                         },
+    "security_camera":  {
+                            "weight":  0.3,
+                            "category":  "电子产品",
+                            "name":  "安全摄像头"
+                        },
+    "motherboard":  {
+                        "weight":  0.3,
+                        "category":  "电子产品",
+                        "name":  "主板"
+                    },
+    "humidifier":  {
+                       "weight":  1,
+                       "category":  "电子产品",
+                       "name":  "加湿器"
+                   },
+    "electric_shaver":  {
+                            "weight":  0.2,
+                            "category":  "电子产品",
+                            "name":  "电动剃须刀"
+                        },
+    "android_phone":  {
+                          "weight":  0.2,
+                          "category":  "电子产品",
+                          "name":  "安卓手机"
+                      },
+    "smartphone":  {
+                       "weight":  0.2,
+                       "category":  "电子产品",
+                       "name":  "智能手机"
+                   },
+    "usb_card":  {
+                     "weight":  0.05,
+                     "category":  "电子产品",
+                     "name":  "USB卡"
+                 },
+    "circuit_breaker":  {
+                            "weight":  0.5,
+                            "category":  "电子产品",
+                            "name":  "断路器"
+                        },
+    "powerbank":  {
+                      "weight":  0.3,
+                      "category":  "电子产品",
+                      "name":  "充电宝"
+                  },
+    "wifi_card":  {
+                      "weight":  0.05,
+                      "category":  "电子产品",
+                      "name":  "WiFi卡"
+                  },
+    "rice_cooker":  {
+                        "weight":  2,
+                        "category":  "电子产品",
+                        "name":  "电饭煲"
+                    },
+    "aaa_battery":  {
+                        "weight":  0.01,
+                        "category":  "电子产品",
+                        "name":  "AAA电池"
+                    },
+    "lithium_battery":  {
+                            "weight":  0.1,
+                            "category":  "电子产品",
+                            "name":  "锂电池"
+                        },
+    "standard_sim":  {
+                         "weight":  0.01,
+                         "category":  "电子产品",
+                         "name":  "标准SIM"
+                     },
+    "smart_speaker":  {
+                          "weight":  0.5,
+                          "category":  "电子产品",
+                          "name":  "智能音箱"
+                      },
+    "iphone":  {
+                   "weight":  0.2,
+                   "category":  "电子产品",
+                   "name":  "iPhone"
+               },
+    "trackpad":  {
+                     "weight":  0.2,
+                     "category":  "电子产品",
+                     "name":  "触控板"
+                 },
+    "cd_player":  {
+                      "weight":  1,
+                      "category":  "电子产品",
+                      "name":  "CD播放器"
+                  },
+    "power_supply":  {
+                         "weight":  2,
+                         "category":  "电子产品",
+                         "name":  "电源"
+                     },
+    "glucose_meter":  {
+                          "weight":  0.1,
+                          "category":  "电子产品",
+                          "name":  "血糖仪"
+                      },
+    "ceiling_light":  {
+                          "weight":  1,
+                          "category":  "电子产品",
+                          "name":  "吸顶灯"
+                      },
+    "dishwasher":  {
+                       "weight":  30,
+                       "category":  "电子产品",
+                       "name":  "洗碗机"
+                   },
+    "hdmi_cable":  {
+                       "weight":  0.1,
+                       "category":  "电子产品",
+                       "name":  "HDMI线"
+                   },
+    "router":  {
+                   "weight":  0.5,
+                   "category":  "电子产品",
+                   "name":  "路由器"
+               },
+    "inverter":  {
+                     "weight":  2,
+                     "category":  "电子产品",
+                     "name":  "逆变器"
+                 },
+    "coffee_maker":  {
+                         "weight":  2,
+                         "category":  "电子产品",
+                         "name":  "咖啡机"
+                     },
+    "3d_printer":  {
+                       "weight":  5,
+                       "category":  "电子产品",
+                       "name":  "3D打印机"
+                   },
+    "surge_protector":  {
+                            "weight":  0.5,
+                            "category":  "电子产品",
+                            "name":  "浪涌保护器"
+                        },
+    "smart_tv":  {
+                     "weight":  10,
+                     "category":  "电子产品",
+                     "name":  "智能电视"
+                 },
+    "pci_card":  {
+                     "weight":  0.1,
+                     "category":  "电子产品",
+                     "name":  "PCI卡"
+                 },
+    "media_player":  {
+                         "weight":  0.5,
+                         "category":  "电子产品",
+                         "name":  "媒体播放器"
+                     },
+    "capture_card":  {
+                         "weight":  0.2,
+                         "category":  "电子产品",
+                         "name":  "采集卡"
+                     },
+    "gaming_laptop":  {
+                          "weight":  2,
+                          "category":  "电子产品",
+                          "name":  "游戏本"
+                      },
+    "soldering_iron":  {
+                           "weight":  0.3,
+                           "category":  "电子产品",
+                           "name":  "烙铁"
+                       },
+    "amplifier":  {
+                      "weight":  3,
+                      "category":  "电子产品",
+                      "name":  "功放"
+                  },
+    "fast_charger":  {
+                         "weight":  0.2,
+                         "category":  "电子产品",
+                         "name":  "快充充电器"
+                     },
+    "ssd":  {
+                "weight":  0.2,
+                "category":  "电子产品",
+                "name":  "固态硬盘"
+            },
+    "power_cord":  {
+                       "weight":  0.1,
+                       "category":  "电子产品",
+                       "name":  "电源线"
+                   },
+    "heating_pad":  {
+                        "weight":  0.5,
+                        "category":  "电子产品",
+                        "name":  "加热垫"
+                    },
+    "drone":  {
+                  "weight":  1,
+                  "category":  "电子产品",
+                  "name":  "无人机"
+              },
+    "projector":  {
+                      "weight":  2,
+                      "category":  "电子产品",
+                      "name":  "投影仪"
+                  },
+    "oscilloscope":  {
+                         "weight":  5,
+                         "category":  "电子产品",
+                         "name":  "示波器"
+                     },
+    "air_purifier":  {
+                         "weight":  3,
+                         "category":  "电子产品",
+                         "name":  "空气净化器"
+                     },
+    "massage_gun":  {
+                        "weight":  0.5,
+                        "category":  "电子产品",
+                        "name":  "按摩枪"
+                    },
+    "micro_sim":  {
+                      "weight":  0.01,
+                      "category":  "电子产品",
+                      "name":  "Micro SIM"
+                  },
+    "calculator":  {
+                       "weight":  0.1,
+                       "category":  "电子产品",
+                       "name":  "计算器"
+                   },
+    "scale":  {
+                  "weight":  1,
+                  "category":  "电子产品",
+                  "name":  "体重秤"
+              },
+    "desk_lamp":  {
+                      "weight":  0.5,
+                      "category":  "电子产品",
+                      "name":  "台灯"
+                  },
+    "usb_cable":  {
+                      "weight":  0.05,
+                      "category":  "电子产品",
+                      "name":  "USB数据线"
+                  }
+}

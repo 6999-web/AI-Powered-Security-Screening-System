@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X 光安检机模拟 Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .card h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="file"],
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        input[type="file"]:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        button {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+            border: 2px solid #ddd;
+        }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+
+        .btn-danger {
+            background: #ff6b6b;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #ff5252;
+        }
+
+        .image-preview {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .image-preview img {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .result-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .result-section h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .items-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+        }
+
+        .items-table th,
+        .items-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .items-table th {
+            background: #f0f0f0;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .items-table tr:hover {
+            background: #f9f9f9;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+
+        .status-normal {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-anomaly {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .anomaly-list {
+            margin-top: 15px;
+            padding: 15px;
+            background: #fff3cd;
+            border-radius: 6px;
+            border-left: 4px solid #ffc107;
+        }
+
+        .anomaly-item {
+            margin-bottom: 10px;
+            padding: 10px;
+            background: white;
+            border-radius: 4px;
+        }
+
+        .anomaly-item strong {
+            color: #ff6b6b;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-box .number {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .stat-box .label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .alert {
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        .alert.show {
+            display: block;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .alert-info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔍 X 光安检机模拟 Demo</h1>
+            <p>支持图片上传、AI 识别、物品比对的安检系统</p>
+        </header>
+
+        <div class="main-content">
+            <!-- 入场安检 -->
+            <div class="card">
+                <h2>📥 入场安检</h2>
+                
+                <div id="entryAlert" class="alert"></div>
+
+                <div class="form-group">
+                    <label for="entryUserId">用户 ID</label>
+                    <input type="text" id="entryUserId" placeholder="输入用户 ID" value="USER001">
+                </div>
+
+                <div class="form-group">
+                    <label for="entryImage">上传 X 光图片</label>
+                    <input type="file" id="entryImage" accept="image/*">
+                </div>
+
+                <div class="form-group">
+                    <label for="entryChannel">通道号</label>
+                    <input type="number" id="entryChannel" min="1" value="1">
+                </div>
+
+                <div class="image-preview" id="entryImagePreview"></div>
+
+                <div class="button-group">
+                    <button class="btn-primary" onclick="handleEntry()">
+                        <span id="entryBtnText">开始入场安检</span>
+                    </button>
+                    <button class="btn-secondary" onclick="clearEntry()">清空</button>
+                </div>
+
+                <div id="entryResult"></div>
+            </div>
+
+            <!-- 离场安检 -->
+            <div class="card">
+                <h2>📤 离场安检</h2>
+                
+                <div id="exitAlert" class="alert"></div>
+
+                <div class="form-group">
+                    <label for="exitUserId">用户 ID</label>
+                    <input type="text" id="exitUserId" placeholder="输入用户 ID" value="USER001">
+                </div>
+
+                <div class="form-group">
+                    <label for="exitImage">上传 X 光图片</label>
+                    <input type="file" id="exitImage" accept="image/*">
+                </div>
+
+                <div class="form-group">
+                    <label for="exitChannel">通道号</label>
+                    <input type="number" id="exitChannel" min="1" value="1">
+                </div>
+
+                <div class="image-preview" id="exitImagePreview"></div>
+
+                <div class="button-group">
+                    <button class="btn-primary" onclick="handleExit()">
+                        <span id="exitBtnText">开始离场安检</span>
+                    </button>
+                    <button class="btn-secondary" onclick="clearExit()">清空</button>
+                </div>
+
+                <div id="exitResult"></div>
+            </div>
+        </div>
+
+        <!-- 统计信息 -->
+        <div class="card">
+            <h2>📊 系统统计</h2>
+            <div class="stats-grid" id="statsGrid">
+                <div class="stat-box">
+                    <div class="number" id="totalEntry">0</div>
+                    <div class="label">总入场数</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number" id="totalExit">0</div>
+                    <div class="label">总离场数</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number" id="totalAlerts">0</div>
+                    <div class="label">异常记录</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number" id="currentInside">0</div>
+                    <div class="label">当前在场</div>
+                </div>
+            </div>
+            <div class="button-group" style="margin-top: 20px;">
+                <button class="btn-secondary" onclick="refreshStats()">刷新统计</button>
+                <button class="btn-danger" onclick="clearAllData()">清空所有数据</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8888';
+
+        // 显示提示信息
+        function showAlert(elementId, message, type = 'info') {
+            const alertEl = document.getElementById(elementId);
+            alertEl.textContent = message;
+            alertEl.className = `alert show alert-${type}`;
+            setTimeout(() => {
+                alertEl.classList.remove('show');
+            }, 5000);
+        }
+
+        // 处理图片预览
+        function handleImagePreview(inputId, previewId) {
+            const input = document.getElementById(inputId);
+            const preview = document.getElementById(previewId);
+            
+            input.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        preview.innerHTML = `<img src="${event.target.result}" alt="预览">`;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+
+        // 初始化图片预览
+        handleImagePreview('entryImage', 'entryImagePreview');
+        handleImagePreview('exitImage', 'exitImagePreview');
+
+        // 入场安检
+        async function handleEntry() {
+            const userId = document.getElementById('entryUserId').value;
+            const imageInput = document.getElementById('entryImage');
+            const channelNo = document.getElementById('entryChannel').value;
+            const btnText = document.getElementById('entryBtnText');
+            const btn = btnText.parentElement;
+
+            if (!userId) {
+                showAlert('entryAlert', '请输入用户 ID', 'error');
+                return;
+            }
+
+            if (!imageInput.files[0]) {
+                showAlert('entryAlert', '请选择图片', 'error');
+                return;
+            }
+
+            btn.disabled = true;
+            btnText.innerHTML = '<span class="loading"></span>处理中...';
+
+            try {
+                const formData = new FormData();
+                formData.append('image', imageInput.files[0]);
+                formData.append('user_id', userId);
+                formData.append('channel_no', channelNo);
+
+                const response = await fetch(`${API_BASE}/entry`, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(error.detail || '请求失败');
+                }
+
+                const data = await response.json();
+                displayEntryResult(data);
+                showAlert('entryAlert', '入场安检成功！', 'success');
+                refreshStats();
+
+            } catch (error) {
+                showAlert('entryAlert', `错误：${error.message}`, 'error');
+            } finally {
+                btn.disabled = false;
+                btnText.textContent = '开始入场安检';
+            }
+        }
+
+        // 显示入场结果
+        function displayEntryResult(data) {
+            const resultDiv = document.getElementById('entryResult');
+            const itemsHtml = data.items.map(item => `
+                <tr>
+                    <td>${item.name}</td>
+                    <td>${item.category}</td>
+                    <td>${item.quantity}</td>
+                    <td>${item.weight.toFixed(2)} kg</td>
+                </tr>
+            `).join('');
+
+            resultDiv.innerHTML = `
+                <div class="result-section">
+                    <h3>✅ 识别结果</h3>
+                    <table class="items-table">
+                        <thead>
+                            <tr>
+                                <th>物品名称</th>
+                                <th>类别</th>
+                                <th>数量</th>
+                                <th>重量</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${itemsHtml}
+                        </tbody>
+                    </table>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        <div><strong>总件数：</strong> ${data.total_count}</div>
+                        <div><strong>总重量：</strong> ${data.total_weight.toFixed(2)} kg</div>
+                        <div><strong>记录 ID：</strong> ${data.record_id}</div>
+                        <div><strong>时间：</strong> ${new Date(data.timestamp).toLocaleString('zh-CN')}</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // 离场安检
+        async function handleExit() {
+            const userId = document.getElementById('exitUserId').value;
+            const imageInput = document.getElementById('exitImage');
+            const channelNo = document.getElementById('exitChannel').value;
+            const btnText = document.getElementById('exitBtnText');
+            const btn = btnText.parentElement;
+
+            if (!userId) {
+                showAlert('exitAlert', '请输入用户 ID', 'error');
+                return;
+            }
+
+            if (!imageInput.files[0]) {
+                showAlert('exitAlert', '请选择图片', 'error');
+                return;
+            }
+
+            btn.disabled = true;
+            btnText.innerHTML = '<span class="loading"></span>处理中...';
+
+            try {
+                const formData = new FormData();
+                formData.append('image', imageInput.files[0]);
+                formData.append('user_id', userId);
+                formData.append('channel_no', channelNo);
+
+                const response = await fetch(`${API_BASE}/exit`, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(error.detail || '请求失败');
+                }
+
+                const data = await response.json();
+                displayExitResult(data);
+                showAlert('exitAlert', '离场安检完成！', 'success');
+                refreshStats();
+
+            } catch (error) {
+                showAlert('exitAlert', `错误：${error.message}`, 'error');
+            } finally {
+                btn.disabled = false;
+                btnText.textContent = '开始离场安检';
+            }
+        }
+
+        // 显示离场结果
+        function displayExitResult(data) {
+            const resultDiv = document.getElementById('exitResult');
+            const itemsHtml = data.items.map(item => `
+                <tr>
+                    <td>${item.name}</td>
+                    <td>${item.category}</td>
+                    <td>${item.quantity}</td>
+                    <td>${item.weight.toFixed(2)} kg</td>
+                </tr>
+            `).join('');
+
+            const statusBadge = data.comparison_status === 'normal' 
+                ? '<span class="status-badge status-normal">✅ 正常</span>'
+                : '<span class="status-badge status-anomaly">⚠️ 异常</span>';
+
+            let anomaliesHtml = '';
+            if (data.anomalies && data.anomalies.length > 0) {
+                anomaliesHtml = `
+                    <div class="anomaly-list">
+                        <strong>🚨 检测到异常：</strong>
+                        ${data.anomalies.map(a => `
+                            <div class="anomaly-item">
+                                <strong>${a.title}：</strong> ${a.description}
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            }
+
+            resultDiv.innerHTML = `
+                <div class="result-section">
+                    <h3>✅ 识别结果 ${statusBadge}</h3>
+                    <table class="items-table">
+                        <thead>
+                            <tr>
+                                <th>物品名称</th>
+                                <th>类别</th>
+                                <th>数量</th>
+                                <th>重量</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${itemsHtml}
+                        </tbody>
+                    </table>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        <div><strong>总件数：</strong> ${data.total_count}</div>
+                        <div><strong>总重量：</strong> ${data.total_weight.toFixed(2)} kg</div>
+                        <div><strong>记录 ID：</strong> ${data.record_id}</div>
+                        <div><strong>时间：</strong> ${new Date(data.timestamp).toLocaleString('zh-CN')}</div>
+                    </div>
+                    ${anomaliesHtml}
+                </div>
+            `;
+        }
+
+        // 刷新统计信息
+        async function refreshStats() {
+            try {
+                const response = await fetch(`${API_BASE}/statistics`);
+                const data = await response.json();
+                
+                document.getElementById('totalEntry').textContent = data.total_entry;
+                document.getElementById('totalExit').textContent = data.total_exit;
+                document.getElementById('totalAlerts').textContent = data.total_alerts;
+                document.getElementById('currentInside').textContent = data.current_inside;
+            } catch (error) {
+                console.error('获取统计信息失败:', error);
+            }
+        }
+
+        // 清空所有数据
+        async function clearAllData() {
+            if (!confirm('确定要清空所有数据吗？此操作不可撤销！')) {
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_BASE}/clear`, {
+                    method: 'POST'
+                });
+
+                if (response.ok) {
+                    showAlert('entryAlert', '所有数据已清空', 'success');
+                    clearEntry();
+                    clearExit();
+                    refreshStats();
+                }
+            } catch (error) {
+                showAlert('entryAlert', `错误：${error.message}`, 'error');
+            }
+        }
+
+        // 清空入场表单
+        function clearEntry() {
+            document.getElementById('entryUserId').value = 'USER001';
+            document.getElementById('entryImage').value = '';
+            document.getElementById('entryChannel').value = '1';
+            document.getElementById('entryImagePreview').innerHTML = '';
+            document.getElementById('entryResult').innerHTML = '';
+        }
+
+        // 清空离场表单
+        function clearExit() {
+            document.getElementById('exitUserId').value = 'USER001';
+            document.getElementById('exitImage').value = '';
+            document.getElementById('exitChannel').value = '1';
+            document.getElementById('exitImagePreview').innerHTML = '';
+            document.getElementById('exitResult').innerHTML = '';
+        }
+
+        // 页面加载时刷新统计
+        window.addEventListener('load', refreshStats);
+    </script>
+</body>
+</html>

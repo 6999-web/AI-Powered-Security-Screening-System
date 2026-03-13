@@ -1,7 +1,7 @@
 """
 通义千问视觉模型服务
 """
-from openai import OpenAI
+from openai import AsyncOpenAI
 import os
 import json
 import base64
@@ -23,7 +23,7 @@ class QwenVisionService:
         if not self.api_key:
             raise ValueError("DASHSCOPE_API_KEY 环境变量未设置")
         
-        self.client = OpenAI(
+        self.client = AsyncOpenAI(
             api_key=self.api_key,
             base_url=self.base_url
         )
@@ -61,7 +61,7 @@ class QwenVisionService:
             
             # 3. 调用 API
             print(f"正在调用通义千问 API，模型：{self.model}")
-            response = self.client.chat.completions.create(
+            response = await self.client.chat.completions.create(
                 model=self.model,
                 messages=messages,
                 temperature=0.1  # 降低随机性，提高稳定性

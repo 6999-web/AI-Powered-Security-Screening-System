@@ -3,38 +3,14 @@
     <el-card class="step-card">
       <template #header>
         <div class="card-header">
-          <el-icon :size="24"><UserFilled /></el-icon>
+          <el-icon :size="24"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></el-icon>
           <span>步骤 1：身份验证</span>
         </div>
       </template>
       
       <el-form :model="form" label-width="100px">
-        <el-form-item label="验证方式">
-          <el-radio-group v-model="verifyMethod">
-            <el-radio value="idcard">身份证</el-radio>
-            <el-radio value="face">人脸识别</el-radio>
-          </el-radio-group>
-        </el-form-item>
-        
-        <el-form-item v-if="verifyMethod === 'idcard'" label="身份证号">
-          <el-input v-model="form.idCard" placeholder="请输入身份证号" />
-        </el-form-item>
-        
-        <el-form-item v-if="verifyMethod === 'face'" label="人脸照片">
-          <el-upload
-            class="upload-demo"
-            :auto-upload="false"
-            :on-change="handleFaceUpload"
-            :show-file-list="false"
-          >
-            <el-button type="primary">
-              <el-icon><Camera /></el-icon>
-              拍摄/上传照片
-            </el-button>
-          </el-upload>
-          <div v-if="facePreview" class="preview-image">
-            <img :src="facePreview" alt="人脸照片" />
-          </div>
+        <el-form-item label="身份证号">
+          <el-input v-model="form.idCard" placeholder="请输入身份证号（必须与入场时相同）" />
         </el-form-item>
         
         <el-form-item>
@@ -57,92 +33,49 @@
       </el-alert>
     </el-card>
 
-    <el-card v-if="userId && entryRecord" class="info-card">
-      <template #header>
-        <div class="card-header">
-          <el-icon :size="24"><Document /></el-icon>
-          <span>入场记录</span>
-        </div>
-      </template>
-      
-      <el-descriptions :column="2" border>
-        <el-descriptions-item label="入场时间">
-          {{ entryRecord.checkTime }}
-        </el-descriptions-item>
-        <el-descriptions-item label="通道号">
-          {{ entryRecord.channelNo }}
-        </el-descriptions-item>
-        <el-descriptions-item label="物品总数">
-          {{ entryRecord.totalCount }}
-        </el-descriptions-item>
-        <el-descriptions-item label="总重量">
-          {{ entryRecord.totalWeight }} kg
-        </el-descriptions-item>
-      </el-descriptions>
-      
-      <el-table :data="entryRecord.items" border style="margin-top: 20px;">
-        <el-table-column prop="name" label="物品名称" />
-        <el-table-column prop="category" label="类别" />
-        <el-table-column prop="quantity" label="数量" />
-        <el-table-column prop="weight" label="重量(kg)" />
-      </el-table>
-    </el-card>
-
     <el-card class="step-card" :class="{ disabled: !userId }">
       <template #header>
         <div class="card-header">
-          <el-icon :size="24"><Box /></el-icon>
-          <span>步骤 2：离场物品识别</span>
+          <el-icon :size="24"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg></el-icon>
+          <span>步骤 2：上传 X 光图片并识别</span>
         </div>
       </template>
       
-      <!-- 摄像头未启动时显示点击区域 -->
-      <div 
-        v-if="!cameraActive && !imagePreview" 
-        class="camera-trigger-area"
-        @click="startCamera"
-        :class="{ disabled: !userId }"
-      >
-        <el-icon class="camera-icon"><Camera /></el-icon>
-        <div class="trigger-text">点击此处调用摄像头</div>
-        <div class="trigger-tip">将自动识别并比对离场物品</div>
+      <!-- 图片上传区域 -->
+      <div v-if="!imagePreview" class="upload-area">
+        <el-upload
+          drag
+          action="#"
+          :auto-upload="false"
+          :on-change="handleImageUpload"
+          :show-file-list="false"
+          accept="image/*"
+        >
+          <el-icon class="el-icon--upload"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg></el-icon>
+          <div class="el-upload__text">
+            拖拽图片到此或<em>点击上传</em>
+          </div>
+          <template #tip>
+            <div class="el-upload__tip">
+              支持 JPG、PNG 格式，模拟 X 光机扫描的图片
+            </div>
+          </template>
+        </el-upload>
       </div>
 
-      <!-- 摄像头实时预览 -->
-      <div v-if="cameraActive" class="camera-preview">
-        <video ref="videoElement" autoplay playsinline></video>
-        <canvas ref="canvasElement" style="display: none;"></canvas>
-        
-        <div class="camera-controls">
-          <el-button type="success" size="large" @click="captureAndRecognize" :loading="recognizing">
-            <el-icon><Camera /></el-icon>
-            {{ recognizing ? '识别中...' : '拍照并识别' }}
-          </el-button>
-          <el-button size="large" @click="stopCamera">
-            关闭摄像头
-          </el-button>
-        </div>
-
-        <!-- 识别进度 -->
-        <div v-if="recognizing" class="recognition-progress">
-          <el-progress :percentage="recognitionProgress" :status="recognitionProgress === 100 ? 'success' : undefined" />
-          <p>{{ recognitionStatus }}</p>
-        </div>
-      </div>
-
-      <!-- 拍摄的图片预览 -->
-      <div v-if="imagePreview && !cameraActive" class="image-preview">
-        <img :src="imagePreview" alt="拍摄的图片" />
+      <!-- 图片预览 -->
+      <div v-if="imagePreview" class="image-preview">
+        <img :src="imagePreview" alt="上传的图片" />
         <div class="preview-controls">
-          <el-button type="primary" @click="startCamera">
-            <el-icon><Camera /></el-icon>
-            重新拍摄
+          <el-button type="primary" @click="clearImage">
+            <el-icon><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg></el-icon>
+            重新上传
           </el-button>
         </div>
       </div>
       
       <!-- 物品信息表单 -->
-      <el-form v-if="imagePreview && !cameraActive" :model="form" label-width="100px" style="margin-top: 20px;">
+      <el-form v-if="imagePreview" :model="form" label-width="100px" style="margin-top: 20px;">
         <el-form-item label="物品重量">
           <el-input-number v-model="form.weight" :min="0" :precision="2" />
           <span style="margin-left: 10px;">kg</span>
@@ -151,73 +84,91 @@
         <el-form-item label="通道号">
           <el-input-number v-model="form.channelNo" :min="1" />
         </el-form-item>
+        
+        <el-form-item>
+          <el-button type="success" @click="recognizeItems" :loading="recognizing">
+            <el-icon><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg></el-icon>
+            {{ recognizing ? '识别中...' : '开始识别' }}
+          </el-button>
+        </el-form-item>
       </el-form>
+
+      <!-- 识别进度 -->
+      <div v-if="recognizing" class="recognition-progress">
+        <el-progress :percentage="recognitionProgress" :status="recognitionProgress === 100 ? 'success' : undefined" />
+        <p>{{ recognitionStatus }}</p>
+      </div>
     </el-card>
 
-    <el-card v-if="comparisonResult" class="result-card">
+    <el-card v-if="recognitionResult" class="result-card">
       <template #header>
         <div class="card-header">
-          <el-icon :size="24"><DataAnalysis /></el-icon>
+          <el-icon :size="24"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg></el-icon>
           <span>比对结果</span>
         </div>
       </template>
       
-      <el-alert
-        :title="comparisonResult.status === 'normal' ? '比对通过，无异常' : '检测到异常'"
-        :type="comparisonResult.status === 'normal' ? 'success' : 'warning'"
-        :closable="false"
-        show-icon
-        style="margin-bottom: 20px;"
-      />
-      
-      <el-table :data="comparisonResult.items" border>
-        <el-table-column prop="name" label="物品名称" />
-        <el-table-column prop="category" label="类别" />
-        <el-table-column prop="quantity" label="数量" />
-        <el-table-column prop="weight" label="重量(kg)" />
-        <el-table-column label="状态">
-          <template #default="{ row }">
-            <el-tag :type="row.status === 'normal' ? 'success' : 'warning'">
-              {{ row.statusText }}
-            </el-tag>
-          </template>
-        </el-table-column>
-      </el-table>
-      
-      <div v-if="comparisonResult.anomalies && comparisonResult.anomalies.length > 0" class="anomaly-section">
-        <h3>异常详情</h3>
+      <!-- 比对状态 -->
+      <div class="comparison-status">
         <el-alert
-          v-for="(anomaly, index) in comparisonResult.anomalies"
+          :title="recognitionResult.comparison_status === 'normal' ? '✅ 正常' : '⚠️ 异常'"
+          :type="recognitionResult.comparison_status === 'normal' ? 'success' : 'warning'"
+          :closable="false"
+          show-icon
+        />
+      </div>
+
+      <!-- 离场物品 -->
+      <div style="margin-top: 20px;">
+        <h3>离场物品</h3>
+        <el-table :data="recognitionResult.items" border>
+          <el-table-column prop="name" label="物品名称" />
+          <el-table-column prop="category" label="类别" />
+          <el-table-column prop="quantity" label="数量" />
+          <el-table-column prop="weight" label="重量(kg)" />
+        </el-table>
+      </div>
+
+      <!-- 异常信息 -->
+      <div v-if="recognitionResult.anomalies && recognitionResult.anomalies.length > 0" class="anomaly-section">
+        <h3>🚨 检测到异常</h3>
+        <el-alert
+          v-for="(anomaly, index) in recognitionResult.anomalies"
           :key="index"
           :title="anomaly.title"
-          :type="anomaly.type"
           :description="anomaly.description"
+          type="warning"
+          :closable="false"
           show-icon
           style="margin-bottom: 10px;"
         />
       </div>
+
+      <!-- 统计信息 -->
+      <div class="result-summary">
+        <el-descriptions :column="2" border>
+          <el-descriptions-item label="总件数">
+            {{ recognitionResult.total_count }}
+          </el-descriptions-item>
+          <el-descriptions-item label="总重量">
+            {{ recognitionResult.total_weight }} kg
+          </el-descriptions-item>
+          <el-descriptions-item label="安检时间">
+            {{ recognitionResult.timestamp }}
+          </el-descriptions-item>
+          <el-descriptions-item label="通道号">
+            {{ recognitionResult.channel_no }}
+          </el-descriptions-item>
+        </el-descriptions>
+      </div>
       
       <div class="action-buttons">
-        <el-button
-          v-if="comparisonResult.status === 'normal'"
-          type="success"
-          size="large"
-          @click="confirmCheckOut"
-        >
-          <el-icon><Check /></el-icon>
-          确认放行
-        </el-button>
-        <el-button
-          v-else
-          type="warning"
-          size="large"
-          @click="handleAnomaly"
-        >
-          <el-icon><Warning /></el-icon>
-          处理异常
+        <el-button type="success" size="large" @click="submitCheckOut">
+          <el-icon><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg></el-icon>
+          确认离场
         </el-button>
         <el-button size="large" @click="reset">
-          <el-icon><RefreshLeft /></el-icon>
+          <el-icon><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 4v6h6M23 20v-6h-6"></path><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"></path></svg></el-icon>
           重新识别
         </el-button>
       </div>
@@ -226,11 +177,10 @@
 </template>
 
 <script setup>
-import { ref, onUnmounted } from 'vue'
-import { ElMessage, ElMessageBox } from 'element-plus'
+import { ref } from 'vue'
+import { ElMessage } from 'element-plus'
 import api from '@/api'
 
-const verifyMethod = ref('idcard')
 const form = ref({
   idCard: '',
   weight: 0,
@@ -239,74 +189,38 @@ const form = ref({
 
 const userId = ref('')
 const verifying = ref(false)
-const facePreview = ref('')
-const faceFile = ref(null)
 
-const entryRecord = ref(null)
-
-// 摄像头相关
-const cameraActive = ref(false)
-const videoElement = ref(null)
-const canvasElement = ref(null)
-const mediaStream = ref(null)
-
+// 图片相关
 const imagePreview = ref('')
 const imageFile = ref(null)
 const recognizing = ref(false)
 const recognitionProgress = ref(0)
 const recognitionStatus = ref('')
-const comparisonResult = ref(null)
+const recognitionResult = ref(null)
 
-const handleFaceUpload = (file) => {
-  faceFile.value = file.raw
+const handleImageUpload = (file) => {
+  imageFile.value = file.raw
   const reader = new FileReader()
   reader.onload = (e) => {
-    facePreview.value = e.target.result
+    imagePreview.value = e.target.result
   }
   reader.readAsDataURL(file.raw)
 }
 
 const verifyIdentity = async () => {
-  if (verifyMethod.value === 'idcard' && !form.value.idCard) {
+  if (!form.value.idCard) {
     ElMessage.warning('请输入身份证号')
-    return
-  }
-  if (verifyMethod.value === 'face' && !faceFile.value) {
-    ElMessage.warning('请上传人脸照片')
     return
   }
   
   verifying.value = true
   try {
-    // 调用身份验证API
     const formData = new FormData()
-    if (verifyMethod.value === 'idcard') {
-      formData.append('idCard', form.value.idCard)
-    } else {
-      formData.append('face', faceFile.value)
-    }
+    formData.append('idCard', form.value.idCard)
     
     const result = await api.verifyIdentity(formData)
     userId.value = result.userId
-    
-    // 获取入场记录
-    try {
-      const record = await api.getComparison(userId.value)
-      entryRecord.value = {
-        checkTime: record.checkTimeFormatted || record.checkTime,
-        channelNo: record.channelNo,
-        totalCount: record.totalCount,
-        totalWeight: record.totalWeight,
-        items: record.items
-      }
-      ElMessage.success('身份验证成功，已匹配入场记录，请点击下方区域调用摄像头')
-    } catch (error) {
-      // 如果没有入场记录，提示用户先进行入场安检
-      ElMessage.error('未找到入场记录，请先进行入场安检')
-      userId.value = ''
-      verifying.value = false
-      return
-    }
+    ElMessage.success('身份验证成功，请上传 X 光图片')
   } catch (error) {
     ElMessage.error('身份验证失败')
   } finally {
@@ -314,147 +228,48 @@ const verifyIdentity = async () => {
   }
 }
 
-/**
- * 启动摄像头
- */
-const startCamera = async () => {
-  if (!userId.value) {
-    ElMessage.warning('请先完成身份验证')
+const recognizeItems = async () => {
+  if (!imageFile.value) {
+    ElMessage.warning('请先上传图片')
     return
   }
 
-  try {
-    // 先尝试使用默认配置
-    let stream
-    try {
-      stream = await navigator.mediaDevices.getUserMedia({
-        video: {
-          width: { ideal: 1280 },
-          height: { ideal: 720 },
-          facingMode: 'environment'
-        }
-      })
-    } catch (err) {
-      // 如果失败，尝试使用更简单的配置
-      console.warn('使用默认配置失败，尝试简化配置:', err)
-      stream = await navigator.mediaDevices.getUserMedia({
-        video: true
-      })
-    }
-    
-    mediaStream.value = stream
-    cameraActive.value = true
-    imagePreview.value = ''
-    
-    // 等待 DOM 更新
-    setTimeout(() => {
-      if (videoElement.value) {
-        videoElement.value.srcObject = stream
-      }
-    }, 100)
-    
-    ElMessage.success('摄像头已启动，请将离场物品放在摄像头前')
-  } catch (error) {
-    console.error('摄像头启动失败:', error)
-    if (error.name === 'NotAllowedError') {
-      ElMessage.error('摄像头权限被拒绝，请在浏览器设置中允许访问摄像头')
-    } else if (error.name === 'NotFoundError') {
-      ElMessage.error('未检测到摄像头设备')
-    } else if (error.name === 'NotReadableError') {
-      ElMessage.error('摄像头被其他程序占用，请关闭其他使用摄像头的程序后重试')
-    } else {
-      ElMessage.error('无法访问摄像头：' + error.message)
-    }
-  }
-}
-
-/**
- * 停止摄像头
- */
-const stopCamera = () => {
-  if (mediaStream.value) {
-    mediaStream.value.getTracks().forEach(track => track.stop())
-    mediaStream.value = null
-  }
-  cameraActive.value = false
-}
-
-/**
- * 拍照并立即识别比对
- */
-const captureAndRecognize = async () => {
-  if (!videoElement.value || !canvasElement.value) {
-    ElMessage.error('摄像头未就绪')
-    return
-  }
-  
   recognizing.value = true
   recognitionProgress.value = 0
-  recognitionStatus.value = '正在拍照...'
+  recognitionStatus.value = '正在处理图片...'
   
   try {
-    // 1. 拍照
-    const canvas = canvasElement.value
-    const video = videoElement.value
-    
-    canvas.width = video.videoWidth
-    canvas.height = video.videoHeight
-    
-    const ctx = canvas.getContext('2d')
-    ctx.drawImage(video, 0, 0)
-    
-    recognitionProgress.value = 20
-    recognitionStatus.value = '正在处理图片...'
-    
-    // 2. 转换为 Blob
-    const blob = await new Promise(resolve => {
-      canvas.toBlob(resolve, 'image/jpeg', 0.9)
-    })
-    
-    imageFile.value = new File([blob], 'camera-photo.jpg', { type: 'image/jpeg' })
-    imagePreview.value = URL.createObjectURL(blob)
-    
-    recognitionProgress.value = 40
+    recognitionProgress.value = 30
     recognitionStatus.value = '正在上传到服务器...'
     
-    // 3. 调用 API 识别和比对
     const formData = new FormData()
     formData.append('image', imageFile.value)
-    formData.append('userId', userId.value)
+    formData.append('user_id', userId.value)
     formData.append('weight', form.value.weight)
-    formData.append('channelNo', form.value.channelNo)
+    formData.append('channel_no', form.value.channelNo)
     
     recognitionProgress.value = 60
-    recognitionStatus.value = '正在调用 AI 识别和比对...'
+    recognitionStatus.value = '正在调用 AI 识别...'
     
     const result = await api.checkOut(formData)
     
     recognitionProgress.value = 90
     recognitionStatus.value = '正在解析结果...'
     
-    // 4. 显示比对结果
-    comparisonResult.value = {
-      status: result.status || 'normal',
-      items: result.items || [],
-      anomalies: result.anomalies || []
-    }
+    recognitionResult.value = result
     
     recognitionProgress.value = 100
     recognitionStatus.value = '识别完成！'
     
-    // 停止摄像头
-    stopCamera()
-    
-    if (result.status === 'normal') {
-      ElMessage.success('比对通过，无异常')
+    if (result.comparison_status === 'normal') {
+      ElMessage.success('✅ 物品一致，离场正常')
     } else {
-      ElMessage.warning('检测到异常，请查看详情')
+      ElMessage.warning('⚠️ 检测到异常，请查看详情')
     }
     
   } catch (error) {
     console.error('识别失败:', error)
     ElMessage.error('识别失败：' + (error.response?.data?.detail || error.message || '未知错误'))
-    stopCamera()
   } finally {
     setTimeout(() => {
       recognizing.value = false
@@ -464,46 +279,26 @@ const captureAndRecognize = async () => {
   }
 }
 
-const confirmCheckOut = () => {
-  ElMessage.success('离场安检完成，正常放行')
+const clearImage = () => {
+  imagePreview.value = ''
+  imageFile.value = null
+  recognitionResult.value = null
+}
+
+const submitCheckOut = () => {
+  ElMessage.success('离场安检完成')
   setTimeout(() => {
     reset()
   }, 1500)
 }
 
-const handleAnomaly = async () => {
-  try {
-    await ElMessageBox.confirm(
-      '检测到异常，是否需要人工复核？',
-      '异常处理',
-      {
-        confirmButtonText: '人工复核',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }
-    )
-    ElMessage.info('已通知安检人员进行人工复核')
-  } catch {
-    // 取消操作
-  }
-}
-
 const reset = () => {
-  stopCamera()
   userId.value = ''
   form.value = { idCard: '', weight: 0, channelNo: 1 }
-  facePreview.value = ''
-  faceFile.value = null
-  entryRecord.value = null
   imagePreview.value = ''
   imageFile.value = null
-  comparisonResult.value = null
+  recognitionResult.value = null
 }
-
-// 组件卸载时停止摄像头
-onUnmounted(() => {
-  stopCamera()
-})
 </script>
 
 <style scoped>
@@ -512,9 +307,7 @@ onUnmounted(() => {
   margin: 0 auto;
 }
 
-.step-card,
-.info-card,
-.result-card {
+.step-card {
   margin-bottom: 20px;
 }
 
@@ -531,68 +324,24 @@ onUnmounted(() => {
   font-weight: bold;
 }
 
-/* 摄像头触发区域 */
-.camera-trigger-area {
-  text-align: center;
-  padding: 60px 20px;
-  border: 3px dashed #409eff;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: all 0.3s;
-  background: linear-gradient(135deg, #f5f7fa 0%, #e8f4ff 100%);
+/* 图片上传区域 */
+.upload-area {
+  margin: 20px 0;
 }
 
-.camera-trigger-area:hover {
-  border-color: #66b1ff;
-  background: linear-gradient(135deg, #e8f4ff 0%, #d9ecff 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(64, 158, 255, 0.2);
-}
-
-.camera-trigger-area.disabled {
-  cursor: not-allowed;
-  opacity: 0.5;
-  border-color: #dcdfe6;
-  background: #f5f7fa;
-}
-
-.camera-trigger-area.disabled:hover {
-  transform: none;
-  box-shadow: none;
-}
-
-.camera-icon {
-  font-size: 80px;
-  color: #409eff;
-  margin-bottom: 20px;
-}
-
-.trigger-text {
-  font-size: 20px;
-  color: #303133;
-  font-weight: 500;
-  margin-bottom: 10px;
-}
-
-.trigger-tip {
-  font-size: 14px;
-  color: #909399;
-}
-
-/* 摄像头预览 */
-.camera-preview {
+.image-preview {
+  margin-top: 20px;
   text-align: center;
 }
 
-.camera-preview video {
-  width: 100%;
-  max-width: 800px;
-  border-radius: 12px;
-  background: #000;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+.image-preview img {
+  max-width: 100%;
+  max-height: 400px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.camera-controls {
+.preview-controls {
   margin-top: 20px;
   display: flex;
   gap: 15px;
@@ -617,35 +366,28 @@ onUnmounted(() => {
   font-weight: 500;
 }
 
-/* 图片预览 */
-.preview-image,
-.image-preview {
+.result-card {
   margin-top: 20px;
-  text-align: center;
 }
 
-.preview-image img,
-.image-preview img {
-  max-width: 100%;
-  max-height: 500px;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-.preview-controls {
-  margin-top: 20px;
-  display: flex;
-  gap: 15px;
-  justify-content: center;
+.comparison-status {
+  margin-bottom: 20px;
 }
 
 .anomaly-section {
-  margin: 20px 0;
+  margin-top: 20px;
+  padding: 15px;
+  background: #fef0f0;
+  border-radius: 8px;
 }
 
 .anomaly-section h3 {
+  color: #f56c6c;
   margin-bottom: 15px;
-  color: #e6a23c;
+}
+
+.result-summary {
+  margin: 20px 0;
 }
 
 .action-buttons {

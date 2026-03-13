@@ -1,0 +1,452 @@
+﻿{
+    "scarf":  {
+                  "weight":  0.2,
+                  "category":  "个人物品",
+                  "name":  "围巾"
+              },
+    "lighter":  {
+                    "weight":  0.05,
+                    "category":  "其他",
+                    "name":  "打火机"
+                },
+    "skirt":  {
+                  "weight":  0.2,
+                  "category":  "衣服鞋帽",
+                  "name":  "裙子"
+              },
+    "jeans":  {
+                  "weight":  0.4,
+                  "category":  "衣服鞋帽",
+                  "name":  "牛仔裤"
+              },
+    "speaker":  {
+                    "weight":  0.5,
+                    "category":  "电子产品",
+                    "name":  "扬声器"
+                },
+    "tennis_racket":  {
+                          "weight":  0.3,
+                          "category":  "运动户外",
+                          "name":  "网球拍"
+                      },
+    "tea_cup":  {
+                    "weight":  0.2,
+                    "category":  "食品饮料",
+                    "name":  "茶杯"
+                },
+    "skateboard":  {
+                       "weight":  2,
+                       "category":  "运动户外",
+                       "name":  "滑板"
+                   },
+    "thermometer":  {
+                        "weight":  0.1,
+                        "category":  "医疗健康",
+                        "name":  "温度计"
+                    },
+    "coat":  {
+                 "weight":  0.8,
+                 "category":  "衣服鞋帽",
+                 "name":  "外套"
+             },
+    "bandage":  {
+                    "weight":  0.05,
+                    "category":  "医疗健康",
+                    "name":  "绷带"
+                },
+    "eyeshadow":  {
+                      "weight":  0.05,
+                      "category":  "美容护理",
+                      "name":  "眼影"
+                  },
+    "backpack":  {
+                     "weight":  1,
+                     "category":  "个人物品",
+                     "name":  "背包"
+                 },
+    "charger":  {
+                    "weight":  0.2,
+                    "category":  "电子产品",
+                    "name":  "充电器"
+                },
+    "candle":  {
+                   "weight":  0.1,
+                   "category":  "其他",
+                   "name":  "蜡烛"
+               },
+    "badminton_racket":  {
+                             "weight":  0.2,
+                             "category":  "运动户外",
+                             "name":  "羽毛球拍"
+                         },
+    "sweater":  {
+                    "weight":  0.4,
+                    "category":  "衣服鞋帽",
+                    "name":  "毛衣"
+                },
+    "wine_bottle":  {
+                        "weight":  0.8,
+                        "category":  "食品饮料",
+                        "name":  "葡萄酒瓶"
+                    },
+    "milk_carton":  {
+                        "weight":  0.3,
+                        "category":  "食品饮料",
+                        "name":  "牛奶盒"
+                    },
+    "hat":  {
+                "weight":  0.1,
+                "category":  "个人物品",
+                "name":  "帽子"
+            },
+    "pen":  {
+                "weight":  0.01,
+                "category":  "文具用品",
+                "name":  "笔"
+            },
+    "air_freshener":  {
+                          "weight":  0.2,
+                          "category":  "其他",
+                          "name":  "空气清新剂"
+                      },
+    "smartwatch":  {
+                       "weight":  0.1,
+                       "category":  "电子产品",
+                       "name":  "智能手表"
+                   },
+    "powerbank":  {
+                      "weight":  0.3,
+                      "category":  "电子产品",
+                      "name":  "充电宝"
+                  },
+    "coffee_cup":  {
+                       "weight":  0.3,
+                       "category":  "食品饮料",
+                       "name":  "咖啡杯"
+                   },
+    "basketball":  {
+                       "weight":  0.6,
+                       "category":  "运动户外",
+                       "name":  "篮球"
+                   },
+    "matches":  {
+                    "weight":  0.01,
+                    "category":  "其他",
+                    "name":  "火柴"
+                },
+    "tablet":  {
+                   "weight":  0.5,
+                   "category":  "电子产品",
+                   "name":  "平板电脑"
+               },
+    "yogurt_cup":  {
+                       "weight":  0.2,
+                       "category":  "食品饮料",
+                       "name":  "酸奶杯"
+                   },
+    "lipstick":  {
+                     "weight":  0.05,
+                     "category":  "美容护理",
+                     "name":  "口红"
+                 },
+    "paper":  {
+                  "weight":  0.01,
+                  "category":  "文具用品",
+                  "name":  "纸张"
+              },
+    "laptop":  {
+                   "weight":  1.5,
+                   "category":  "电子产品",
+                   "name":  "笔记本电脑"
+               },
+    "glue":  {
+                 "weight":  0.1,
+                 "category":  "文具用品",
+                 "name":  "胶水"
+             },
+    "shoes":  {
+                  "weight":  0.5,
+                  "category":  "个人物品",
+                  "name":  "鞋"
+              },
+    "scooter":  {
+                    "weight":  3,
+                    "category":  "运动户外",
+                    "name":  "滑板车"
+                },
+    "skateboard_helmet":  {
+                              "weight":  0.5,
+                              "category":  "运动户外",
+                              "name":  "滑板头盔"
+                          },
+    "ping_pong_paddle":  {
+                             "weight":  0.2,
+                             "category":  "运动户外",
+                             "name":  "乒乓球拍"
+                         },
+    "bicycle":  {
+                    "weight":  15,
+                    "category":  "运动户外",
+                    "name":  "自行车"
+                },
+    "drone":  {
+                  "weight":  1,
+                  "category":  "电子产品",
+                  "name":  "无人机"
+              },
+    "phone":  {
+                  "weight":  0.2,
+                  "category":  "电子产品",
+                  "name":  "手机"
+              },
+    "belt":  {
+                 "weight":  0.1,
+                 "category":  "个人物品",
+                 "name":  "皮带"
+             },
+    "water_bottle":  {
+                         "weight":  0.5,
+                         "category":  "食品饮料",
+                         "name":  "水瓶"
+                     },
+    "foundation":  {
+                       "weight":  0.1,
+                       "category":  "美容护理",
+                       "name":  "粉底"
+                   },
+    "pain_reliever":  {
+                          "weight":  0.05,
+                          "category":  "医疗健康",
+                          "name":  "止痛药"
+                      },
+    "keys":  {
+                 "weight":  0.05,
+                 "category":  "个人物品",
+                 "name":  "钥匙"
+             },
+    "hoodie":  {
+                   "weight":  0.5,
+                   "category":  "衣服鞋帽",
+                   "name":  "连帽衫"
+               },
+    "book":  {
+                 "weight":  0.5,
+                 "category":  "文具用品",
+                 "name":  "书籍"
+             },
+    "lunch_box":  {
+                      "weight":  0.3,
+                      "category":  "食品饮料",
+                      "name":  "午餐盒"
+                  },
+    "blush":  {
+                  "weight":  0.05,
+                  "category":  "美容护理",
+                  "name":  "腮红"
+              },
+    "dress":  {
+                  "weight":  0.3,
+                  "category":  "衣服鞋帽",
+                  "name":  "连衣裙"
+              },
+    "shirt":  {
+                  "weight":  0.2,
+                  "category":  "衣服鞋帽",
+                  "name":  "衬衫"
+              },
+    "tape":  {
+                 "weight":  0.05,
+                 "category":  "文具用品",
+                 "name":  "胶带"
+             },
+    "notebook":  {
+                     "weight":  0.2,
+                     "category":  "文具用品",
+                     "name":  "笔记本"
+                 },
+    "raincoat":  {
+                     "weight":  0.3,
+                     "category":  "其他",
+                     "name":  "雨衣"
+                 },
+    "pants":  {
+                  "weight":  0.3,
+                  "category":  "衣服鞋帽",
+                  "name":  "裤子"
+              },
+    "camera":  {
+                   "weight":  0.5,
+                   "category":  "电子产品",
+                   "name":  "相机"
+               },
+    "first_aid_kit":  {
+                          "weight":  0.5,
+                          "category":  "医疗健康",
+                          "name":  "急救箱"
+                      },
+    "roller_skates":  {
+                          "weight":  1,
+                          "category":  "运动户外",
+                          "name":  "溜冰鞋"
+                      },
+    "antiseptic":  {
+                       "weight":  0.2,
+                       "category":  "医疗健康",
+                       "name":  "消毒液"
+                   },
+    "sunglasses":  {
+                       "weight":  0.05,
+                       "category":  "其他",
+                       "name":  "太阳镜"
+                   },
+    "t_shirt":  {
+                    "weight":  0.15,
+                    "category":  "衣服鞋帽",
+                    "name":  "T恤"
+                },
+    "bag":  {
+                "weight":  0.8,
+                "category":  "个人物品",
+                "name":  "包"
+            },
+    "glucose_meter":  {
+                          "weight":  0.1,
+                          "category":  "医疗健康",
+                          "name":  "血糖仪"
+                      },
+    "flashlight":  {
+                       "weight":  0.3,
+                       "category":  "其他",
+                       "name":  "手电筒"
+                   },
+    "beer_bottle":  {
+                        "weight":  0.5,
+                        "category":  "食品饮料",
+                        "name":  "啤酒瓶"
+                    },
+    "gauze":  {
+                  "weight":  0.05,
+                  "category":  "医疗健康",
+                  "name":  "纱布"
+              },
+    "glasses":  {
+                    "weight":  0.05,
+                    "category":  "个人物品",
+                    "name":  "眼镜"
+                },
+    "soda_can":  {
+                     "weight":  0.4,
+                     "category":  "食品饮料",
+                     "name":  "汽水罐"
+                 },
+    "nail_polish":  {
+                        "weight":  0.1,
+                        "category":  "美容护理",
+                        "name":  "指甲油"
+                    },
+    "insect_repellent":  {
+                             "weight":  0.2,
+                             "category":  "其他",
+                             "name":  "驱虫剂"
+                         },
+    "eraser":  {
+                   "weight":  0.05,
+                   "category":  "文具用品",
+                   "name":  "橡皮"
+               },
+    "vitamin":  {
+                    "weight":  0.05,
+                    "category":  "医疗健康",
+                    "name":  "维生素"
+                },
+    "headphones":  {
+                       "weight":  0.1,
+                       "category":  "电子产品",
+                       "name":  "耳机"
+                   },
+    "shampoo":  {
+                    "weight":  0.3,
+                    "category":  "美容护理",
+                    "name":  "洗发水"
+                },
+    "sunscreen":  {
+                      "weight":  0.2,
+                      "category":  "其他",
+                      "name":  "防晒霜"
+                  },
+    "umbrella":  {
+                     "weight":  0.3,
+                     "category":  "其他",
+                     "name":  "雨伞"
+                 },
+    "blood_pressure_monitor":  {
+                                   "weight":  0.3,
+                                   "category":  "医疗健康",
+                                   "name":  "血压计"
+                               },
+    "scissors":  {
+                     "weight":  0.1,
+                     "category":  "文具用品",
+                     "name":  "剪刀"
+                 },
+    "ruler":  {
+                  "weight":  0.05,
+                  "category":  "文具用品",
+                  "name":  "尺子"
+              },
+    "pencil":  {
+                   "weight":  0.01,
+                   "category":  "文具用品",
+                   "name":  "铅笔"
+               },
+    "wallet":  {
+                   "weight":  0.1,
+                   "category":  "个人物品",
+                   "name":  "钱包"
+               },
+    "jacket":  {
+                   "weight":  0.5,
+                   "category":  "衣服鞋帽",
+                   "name":  "夹克"
+               },
+    "eyeliner":  {
+                     "weight":  0.05,
+                     "category":  "美容护理",
+                     "name":  "眼线笔"
+                 },
+    "perfume":  {
+                    "weight":  0.1,
+                    "category":  "美容护理",
+                    "name":  "香水"
+                },
+    "juice_bottle":  {
+                         "weight":  0.5,
+                         "category":  "食品饮料",
+                         "name":  "果汁瓶"
+                     },
+    "pulse_oximeter":  {
+                           "weight":  0.1,
+                           "category":  "医疗健康",
+                           "name":  "血氧仪"
+                       },
+    "football":  {
+                     "weight":  0.4,
+                     "category":  "运动户外",
+                     "name":  "足球"
+                 },
+    "lotion":  {
+                   "weight":  0.2,
+                   "category":  "美容护理",
+                   "name":  "乳液"
+               },
+    "mascara":  {
+                    "weight":  0.05,
+                    "category":  "美容护理",
+                    "name":  "睫毛膏"
+                },
+    "watch":  {
+                  "weight":  0.1,
+                  "category":  "个人物品",
+                  "name":  "手表"
+              }
+}

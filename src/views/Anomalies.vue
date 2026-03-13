@@ -5,7 +5,7 @@
         <div class="card-header">
           <span>异常记录查询</span>
           <el-button type="primary" @click="searchAnomalies">
-            <el-icon><Search /></el-icon>
+            <el-icon><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg></el-icon>
             查询
           </el-button>
         </div>

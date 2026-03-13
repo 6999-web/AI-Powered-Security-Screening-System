@@ -15,14 +15,14 @@ request.interceptors.response.use(
 )
 
 export default {
-  // 入场安检
+  // 入场安检 - X 光 Demo 版本
   checkIn(data) {
-    return request.post('/checkin', data)
+    return request.post('/entry', data)
   },
   
-  // 离场安检
+  // 离场安检 - X 光 Demo 版本
   checkOut(data) {
-    return request.post('/checkout', data)
+    return request.post('/exit', data)
   },
   
   // 获取比对结果
